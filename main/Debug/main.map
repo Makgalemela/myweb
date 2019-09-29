@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.7  C:\Users\1619022\Desktop\myweb\main\main.asm Sun Sep 29 14:48:55 2019
+AVRASM ver. 2.2.7  C:\Users\1619022\Desktop\myweb\main\main.asm Sun Sep 29 20:29:49 2019
 
 
 EQU  SIGNATURE_000 0000001e
@@ -696,19 +696,35 @@ EQU  TWIaddr      00000030
 EQU  SPMRaddr     00000032
 EQU  INT_VECTORS_SIZE 00000034
 CSEG setup        0000001b
-CSEG ChangeModes  00000078
-CSEG capture_input 0000004b
-CSEG RandNumbers  00000053
-CSEG FoursecondsCount 00000061
-CSEG Play_Mode    00000043
-CSEG L4           00000047
-CSEG TEST         00000049
-CSEG lt           00000052
-CSEG L0           0000005b
-CSEG Trigger      0000006d
-CSEG L2           00000060
-CSEG PENALTIES    00000063
-CSEG POINTS       00000065
-CSEG L5           0000006a
-CSEG Delay_10us   00000071
-CSEG L1           00000073
+CSEG testMode     000000ab
+CSEG play         000000ad
+CSEG capture_input 0000005f
+CSEG RandNumbers  00000072
+CSEG FoursecondsCount 0000007e
+CSEG Start        0000003b
+CSEG Play_Mode    0000004e
+CSEG L4           00000053
+CSEG L7           00000056
+CSEG GameOver     000000af
+CSEG TEST         00000058
+CSEG L12          0000005c
+CSEG checkMode    00000062
+CSEG Lu           00000071
+CSEG lt           0000006f
+CSEG POINTS       0000008d
+CSEG L0           00000078
+CSEG Trigger      00000095
+CSEG L2           0000007d
+CSEG score        00000080
+CSEG L56          00000083
+CSEG PENALTIES    0000008a
+CSEG L5           00000092
+CSEG Delay_10us   00000099
+CSEG L21          0000009b
+CSEG Delay_2s     000000a0
+CSEG L1           000000a3
+CSEG NO           000000ba
+CSEG NO1          000000bd
+CSEG L29          000000b7
+CSEG Pos          000000b7
+CSEG Display      000000bf

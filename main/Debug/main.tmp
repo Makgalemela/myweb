@@ -22,22 +22,38 @@
   <FILE>main.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <setup><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>18</LINE></setup>
-  <ChangeModes><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>144</LINE></ChangeModes>
-  <capture_input><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>79</LINE></capture_input>
-  <RandNumbers><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>89</LINE></RandNumbers>
-  <FoursecondsCount><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>107</LINE></FoursecondsCount>
-  <Play_Mode><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>66</LINE></Play_Mode>
-  <L4><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>70</LINE></L4>
-  <TEST><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>74</LINE></TEST>
-  <lt><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>86</LINE></lt>
-  <L0><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>98</LINE></L0>
-  <Trigger><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>128</LINE></Trigger>
-  <L2><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>103</LINE></L2>
-  <PENALTIES><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>113</LINE></PENALTIES>
-  <POINTS><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>117</LINE></POINTS>
-  <L5><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>123</LINE></L5>
-  <Delay_10us><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>135</LINE></Delay_10us>
-  <L1><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>138</LINE></L1>
+  <setup><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>27</LINE></setup>
+  <testMode><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>221</LINE></testMode>
+  <play><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>224</LINE></play>
+  <capture_input><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>116</LINE></capture_input>
+  <RandNumbers><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>139</LINE></RandNumbers>
+  <FoursecondsCount><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>155</LINE></FoursecondsCount>
+  <Start><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>68</LINE></Start>
+  <Play_Mode><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>91</LINE></Play_Mode>
+  <L4><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>96</LINE></L4>
+  <L7><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>101</LINE></L7>
+  <GameOver><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>229</LINE></GameOver>
+  <TEST><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>106</LINE></TEST>
+  <L12><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>109</LINE></L12>
+  <checkMode><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>119</LINE></checkMode>
+  <Lu><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>135</LINE></Lu>
+  <lt><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>132</LINE></lt>
+  <POINTS><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>179</LINE></POINTS>
+  <L0><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>146</LINE></L0>
+  <Trigger><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>190</LINE></Trigger>
+  <L2><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>151</LINE></L2>
+  <score><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>160</LINE></score>
+  <L56><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>164</LINE></L56>
+  <PENALTIES><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>174</LINE></PENALTIES>
+  <L5><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>185</LINE></L5>
+  <Delay_10us><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>197</LINE></Delay_10us>
+  <L21><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>200</LINE></L21>
+  <Delay_2s><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>206</LINE></Delay_2s>
+  <L1><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>211</LINE></L1>
+  <NO><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>241</LINE></NO>
+  <NO1><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>245</LINE></NO1>
+  <L29><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>237</LINE></L29>
+  <Pos><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>238</LINE></Pos>
+  <Display><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>248</LINE></Display>
  </LABELS>
 </ASSEMBLER_INFO>

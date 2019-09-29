@@ -1,10 +1,10 @@
 
-AVRASM ver. 2.2.7  C:\Users\1619022\Desktop\myweb\main\main.asm Sun Sep 29 14:48:55 2019
+AVRASM ver. 2.2.7  C:\Users\1619022\Desktop\myweb\main\main.asm Sun Sep 29 20:29:49 2019
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\avrasm\inc\m328pdef.inc'
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.3.300\avrasm\inc\m328pdef.inc'
                                  
-                                 
+                                 ; author : 
                                  
                                  ;***** Created: 2011-02-09 12:03 ******* Source: ATmega328P.xml **********
                                  ;*************************************************************************
@@ -985,21 +985,30 @@ AVRASM ver. 2.2.7  C:\Users\1619022\Desktop\myweb\main\main.asm Sun Sep 29 14:48
                                  
                                  ; ***** END OF FILE ******************************************************
                                  
+                                 ; student number: 
+                                 ; date : 30 - September - 2019
+                                 ; course : Elen2006
                                  
+                                 
+                                 ;-----------------------------interupt vectors---------------------------------
                                  .org 0x0000
 000000 c01a                      	rjmp setup
                                  
                                  .org  0x0002
-000002 c075                      	rjmp ChangeModes
+000002 c0a8                      	rjmp testMode
+                                 .org  0x0004
+000004 c0a8                      	rjmp play
                                  
                                  .org 0x0014
-000014 c036                      	rjmp capture_input
+000014 c04a                      	rjmp capture_input
                                  
                                  .org 0x0012
-000012 c040                      	rjmp RandNumbers
+000012 c05f                      	rjmp RandNumbers
                                  
                                  .org 0x001A
-00001a c046                      	rjmp FoursecondsCount
+00001a c063                      	rjmp FoursecondsCount
+                                 
+                                 ;--------------------------------------timer modes setup---------------------------
                                  
                                  setup:
                                  
@@ -1011,125 +1020,222 @@ AVRASM ver. 2.2.7  C:\Users\1619022\Desktop\myweb\main\main.asm Sun Sep 29 14:48
 00001f e040                      	ldi R20 , 0
 000020 9340 0080                 	sts TCCR1A , R20
                                  
-000022 e845                      	ldi R20 , 0b10000101
+000022 e045                      	ldi R20 , 0b00000101
 000023 9340 0081                 	sts TCCR1B , R20
                                  
-000025 e200                      	ldi R16 , 0b00100000
-000026 9300 006f                 	sts TIMSK1 , R16
+                                 	/*ldi R16 , 0b00100000
+                                 	sts TIMSK1 , R16*/
+                                 
+000025 e000                      	ldi R16  , 0
+000026 9300 0084                 	sts TCNT1L , R16
                                  
 000028 e000                      	ldi R16  , 0
-000029 9300 0084                 	sts TCNT1L , R16
+000029 9300 0085                 	sts TCNT1H , R16
                                  
-00002b e000                      	ldi R16  , 0
-00002c 9300 0085                 	sts TCNT1H , R16
+00002b e045                      	ldi R20 , 0b00000101
+00002c 9340 00b1                 	sts TCCR2B , R20
                                  
-00002e e045                      	ldi R20 , 0b00000101
-00002f 9340 00b1                 	sts TCCR2B , R20
+00002e e003                      	ldi R16 , 0b00000011
+00002f 9300 0070                 	sts TIMSK2 , R16
                                  
-000031 e003                      	ldi R16 , 0b00000011
-000032 9300 0070                 	sts TIMSK2 , R16
+000031 e000                      	ldi R16  , 0
+000032 9300 00b2                 	sts TCNT2 , R16
                                  
-000034 e000                      	ldi R16  , 0
-000035 9300 00b2                 	sts TCNT2 , R16
+000034 ef0f                      	ldi R16  , 0b11111111
+000035 b907                      	out DDRC , R16
                                  
-000037 ef0f                      	ldi R16  , 0b11111111
-000038 b907                      	out DDRC , R16
+000036 e00f                      	ldi R16, 0b00001111
+000037 9300 0069                 	sts EICRA, R16							
+000039 e003                      	ldi R16 , 0b00000011
+00003a bb0d                      	out  EIMSK, R16							
                                  
-000039 9820                      	cbi DDRB , 0
-00003a 9a57                      	sbi DDRD, 7
-00003b 9a56                      	sbi DDRD, 6
-00003c 9a55                      	sbi DDRD, 5
-00003d 2733                      	clr R19
-00003e 2766                      	clr R22
-00003f 27cc                      	clr R28
-000040 27ee                      	clr R30
-000041 9478                      	sei
-000042 e000                      	Ldi R16 , 0
-                                 
-                                 /*Start: sleep
-                                 	rjmp start*/
-                                 
-                                 Play_Mode:
-000043 e201                      		ldi R16 , 0b00100001
-000044 9300 006f                 		sts TIMSK1 , R16
-000046 2fe5                      		mov R30, R21
-                                 	L4:
-000047 b9e8                      		out portc , R30
-000048 cffe                      		rjmp L4
+                                 ;--------------------------------------------Reset all -------------------------------
                                  	
-                                 TEST:
-000049 b908                      		out portc , R16
-00004a cffe                      		Rjmp TEST
+                                 Start: 
+00003b 9820                      	cbi DDRB , 0
+00003c 9852                      	cbi DDRD , 2
+00003d 9853                      	cbi DDRD , 3
+00003e 9a57                      	sbi DDRD, 7
+00003f 9a56                      	sbi DDRD, 6
+000040 9a55                      	sbi DDRD, 5
+000041 2733                      	clr R19
+000042 2766                      	clr R22
+000043 27dd                      	clr R29
+000044 27cc                      	clr R28
+000045 27ee                      	clr R30
+000046 2788                      	clr R24
+000047 2777                      	clr R23
+000048 27cc                      	clr R28
+000049 2788                      	clr R24
+00004a 2755                      	clr R21
+00004b 9478                      	sei
+00004c e000                      	Ldi R16 , 0
                                  
+00004d cfed                      	rjmp start
+                                 	
+                                 ;----------------------------------------play mode------------------------------------------
+                                 Play_Mode:
+00004e e0a1                      		ldi R26 , 1
+00004f e201                      		ldi R16 , 0b00100001
+000050 9300 006f                 		sts TIMSK1 , R16
+000052 2fe5                      		mov R30, R21
+                                 	L4:
+000053 3086                      		cpi R24 , 6
+000054 f409                      		brne L7
+000055 c059                      		rjmp GameOver
+                                 
+                                 	L7: 
+000056 b9e8                      		out portc , R30
+000057 cffb                      		rjmp L4
+                                 
+                                 ;-----------------------------------------Test mode ------------------------------------------
+000058 eee2                      TEST:	ldi R30 ,-30
+000059 e200                      		ldi R16 , 0b00100000
+00005a 9300 006f                 		sts TIMSK1 , R16
+                                 	L12 :
+00005c e0a2                      		ldi R26 , 2
+00005d b908                      		out portc , R16
+00005e cffd                      		Rjmp L12
+                                 
+                                 ;----------------------------------------input capture logic ---------------------------------------------
                                  
                                  capture_input :	
-00004b 9100 0086                 		LDS R16, ICR1L
-00004d 5100                      		subi r16 , 16
-00004e 1b0e                      		sub r16 , R30
-00004f 3000                      		cpi r16 , 0
-000050 f409                      		brne lt
-000051 9a5d                      			sbi portd , 5
+00005f 9100 0086                 		LDS R16, ICR1L
+000061 5100                      		subi r16 , 16
+                                 checkMode:
+000062 30a2                      		cpi R26 , 2
+000063 f069                      		BREQ Lu
+000064 1b0e                      		sub r16 , R30
+000065 3000                      		cpi r16 , 0
+000066 f441                      		brne lt
+000067 9a5d                      		sbi portd , 5
+000068 985e                      		cbi portd , 6
+000069 e001                      		ldi R16 , 0b00000001
+00006a 9300 006f                 		sts TIMSK1 , R16
+00006c 9573                      		Inc R23
+00006d d01f                      		rcall POINTS
+00006e c002                      		rjmp Lu
                                  		lt:	
-000052 9518                      		reti
+00006f 9a5e                      			sbi portd , 6
+000070 985d                      			cbi portd , 5
+                                 	   Lu:
+000071 9518                      			reti
                                  
+                                 ;---------------------------using timer2 overflow interrupt rand numbers-----------------
                                  RandNumbers:
-000053 95b3                      		Inc R27
-000054 37ba                      		cpi R27 , 122
-000055 f429                      		BRNE L0
-000056 d016                      		rcall Trigger
-000057 27bb                      		Clr R27
-000058 95b3                      		Inc R27
-000059 985d                      		cbi portd , 5
-00005a 985e                      		cbi portd , 6
-00005b 9553                      	L0: Inc R21
-00005c 305b                      		cpi R21 ,11
-00005d f411                      		BRNE L2
-00005e 2755                      		clr R21
-00005f 9553                      		Inc R21
+000072 95b3                      		Inc R27
+000073 37ba                      		cpi R27 , 122
+000074 f419                      		BRNE L0
+000075 d01f                      		rcall Trigger
+000076 27bb                      		Clr R27
+000077 95b3                      		Inc R27
+000078 9553                      	L0: Inc R21
+000079 305a                      		cpi R21 ,10
+00007a f411                      		BRNE L2
+00007b 2755                      		clr R21
+00007c 9553                      		Inc R21
                                  	L2:
-000060 9518                      		reti
+00007d 9518                      		reti
                                  
-                                 
+                                 ;-------------------------timer fourseonds overflow timer----------------------------
                                  FoursecondsCount:
-000061 2fe5                      	mov R30 , R21
-000062 9518                      	reti
+                                 	
+00007e 985e                      cbi portd ,6
+00007f 985d                      cbi  portd , 5
                                  
+000080 3070                      score: cpi R23 , 0
+000081 f409                      	BRNE L56
+000082 d007                      	rcall PENALTIES	
+                                 		
+                                 L56:
+000083 2777                      	clr R23
+000084 e201                      	ldi R16 , 0b00100001
+000085 9300 006f                 	sts TIMSK1 , R16
+000087 2fe5                      	mov R30 , R21
+000088 9583                      	inc R24
+000089 9518                      	reti
                                  
+                                 ;-----------------------------penalties----------------------------------------------
                                  
                                  PENALTIES:
-000063 95ca                      		DEC R28
-000064 9508                      		ret
-                                 
+00008a 95ca                      		DEC R28
+00008b 95d3                      		INC R29
+00008c 9508                      		ret
+                                 ;--------------------------points score--------------------------------------------
                                  POINTS:
-000065 30ca                      		cpi R28 , 10
-000066 f019                      		BREQ L5
-000067 95c3                      		INC R28
-000068 95c3                      		INC R28
-000069 9508                      		ret
+00008d 95c3                      		INC R28
+00008e 95c3                      		INC R28
+00008f 30ca                      		cpi R28 , 10
+000090 f009                      		BREQ L5
+000091 9508                      		ret
                                  		L5:
-00006a 27cc                      		clr R28
-00006b e1c0                      		ldi R28 , 0b00010000
-00006c 9508                      		ret
-                                 
+000092 27cc                      		clr R28
+000093 e1c0                      		ldi R28 , 0b00010000
+000094 9508                      	ret
+                                 ;---------------------------------triger loop------------------------------------
                                  Trigger:
-00006d 9a5f                      		sbi portd , 7
-00006e d002                      		rcall Delay_10us
-00006f 985f                      		cbi portd , 7
-000070 9508                      		ret
+000095 9a5f                      		sbi portd , 7
+000096 d002                      		rcall Delay_10us
+000097 985f                      		cbi portd , 7
+000098 9508                      		ret
                                  
-                                 
+                                 ;-------------------------------10 us delay---------------------------------------
                                  Delay_10us:
-000071 e023                      		ldi  r18, 3
-000072 eb33                      		ldi  r19, 179
-000073 953a                      	L1: dec  r19
-000074 f7f1                      		brne L1
-000075 952a                      		dec  r18
-000076 f7e1                      		brne L1
-000077 9508                      		ret
+000099 e023                      		ldi  r18, 3
+00009a eb33                      		ldi  r19, 179
+00009b 953a                      	L21: dec  r19
+00009c f7f1                      		brne L21
+00009d 952a                      		dec  r18
+00009e f7e1                      		brne L21
+00009f 9508                      		ret
+                                 ;---------------------------------2 sec delay --------------------------------
+                                 Delay_2s:
                                  
-                                 ChangeModes:
-000078 9478                      			sei
-                                 			/*rjmp Play_Mode*/
+0000a0 ea23                      		ldi  r18, 163
+0000a1 e537                      		ldi  r19, 87
+0000a2 e043                      		ldi  r20, 3
+0000a3 954a                      	L1: dec  r20
+0000a4 f7f1                      		brne L1
+0000a5 953a                      		dec  r19
+0000a6 f7e1                      		brne L1
+0000a7 952a                      		dec  r18
+0000a8 f7d1                      		brne L1
+0000a9 0000                      		nop
+0000aa 9508                      		ret
+                                 
+                                 ;----------------------test mode interupted pin----------------------------------
+                                 testmode:
+0000ab 9478                      		sei
+0000ac cfab                      		rjmp TEST
+                                 play:
+0000ad 9478                      	sei
+0000ae cf9f                      	rjmp Play_Mode
+                                 ;---------------------------Game over loop -------------------------------------
+                                 
+                                 GameOver:
+0000af 9478                      	sei
+0000b0 e000                      	ldi R16 , 0b00000000
+0000b1 9300 006f                 	sts TIMSK1 , R16
+0000b3 30d6                      	cpi R29 ,6
+0000b4 f029                      	Breq NO
+0000b5 30d5                      	cpi R29 , 5
+0000b6 f031                      	breq NO1
+                                 L29 :
+0000b7 b9c8                      Pos: out portc , R28
+0000b8 dfe7                      	rcall Delay_2s
+0000b9 cf81                      	rjmp start
+                                 NO:
+0000ba e0c6                      	ldi R28 ,6
+0000bb 9a5e                      	sbi portd , 6
+0000bc c002                      	rjmp Display
+                                 NO1:
+0000bd 9a5e                      	sbi portd , 6
+0000be e0c3                      	ldi R28 ,3
+                                 Display :
+0000bf b9c8                      	out portc , R28
+0000c0 dfdf                      	rcall Delay_2s
+0000c1 985e                      	cbi portd , 6
+0000c2 cf78                      	rjmp start
 
 
 RESOURCE USE INFORMATION
@@ -1149,37 +1255,37 @@ counted separately from r26..r31 here.
 "ATmega328P" register use summary:
 x  :   0 y  :   0 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:  20 r17:   0 r18:   2 r19:   3 r20:  10 
-r21:   6 r22:   1 r23:   0 r24:   0 r25:   0 r26:   0 r27:   4 r28:   7 
-r29:   0 r30:   5 r31:   0 
-Registers used: 9 out of 35 (25.7%)
+r13:   0 r14:   0 r15:   0 r16:  30 r17:   0 r18:   4 r19:   5 r20:  12 
+r21:   7 r22:   1 r23:   4 r24:   4 r25:   0 r26:   3 r27:   4 r28:  12 
+r29:   4 r30:   6 r31:   0 
+Registers used: 13 out of 35 (37.1%)
 
 "ATmega328P" instruction use summary:
 .lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :   0 and   :   0 
 andi  :   0 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
-brcc  :   0 brcs  :   0 break :   0 breq  :   1 brge  :   0 brhc  :   0 
+brcc  :   0 brcs  :   0 break :   0 breq  :   4 brge  :   0 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
-brne  :   5 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
-brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   4 cbr   :   0 
-clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   7 cls   :   0 
+brne  :  10 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
+brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   9 cbr   :   0 
+clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :  14 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
-cpi   :   4 cpse  :   0 dec   :   3 eor   :   0 fmul  :   0 fmuls :   0 
-fmulsu:   0 icall :   0 ijmp  :   0 in    :   0 inc   :   6 jmp   :   0 
-ld    :   0 ldd   :   0 ldi   :  16 lds   :   1 lpm   :   0 lsl   :   0 
+cpi   :   9 cpse  :   0 dec   :   6 eor   :   0 fmul  :   0 fmuls :   0 
+fmulsu:   0 icall :   0 ijmp  :   0 in    :   0 inc   :   9 jmp   :   0 
+ld    :   0 ldd   :   0 ldi   :  29 lds   :   1 lpm   :   0 lsl   :   0 
 lsr   :   0 mov   :   2 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
-neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   5 pop   :   0 
-push  :   0 rcall :   2 ret   :   5 reti  :   4 rjmp  :   7 rol   :   0 
-ror   :   0 sbc   :   0 sbci  :   0 sbi   :   5 sbic  :   0 sbis  :   0 
+neg   :   0 nop   :   1 or    :   0 ori   :   0 out   :   8 pop   :   0 
+push  :   0 rcall :   6 ret   :   6 reti  :   3 rjmp  :  16 rol   :   0 
+ror   :   0 sbc   :   0 sbci  :   0 sbi   :   8 sbic  :   0 sbis  :   0 
 sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
-sei   :   2 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
-sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   9 
+sei   :   4 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
+sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :  13 
 sub   :   1 subi  :   1 swap  :   0 tst   :   0 wdr   :   0 
-Instructions used: 20 out of 113 (17.7%)
+Instructions used: 21 out of 113 (18.6%)
 
 "ATmega328P" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x0000f4    200      0    200   32768   0.6%
+[.cseg] 0x000000 0x000186    348      0    348   32768   1.1%
 [.dseg] 0x000100 0x000100      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 
