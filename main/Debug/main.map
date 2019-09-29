@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.7  C:\Users\1619022\Desktop\myweb\main\main.asm Sun Sep 29 12:27:03 2019
+AVRASM ver. 2.2.7  C:\Users\1619022\Desktop\myweb\main\main.asm Sun Sep 29 14:31:01 2019
 
 
 EQU  SIGNATURE_000 0000001e
@@ -696,11 +696,19 @@ EQU  TWIaddr      00000030
 EQU  SPMRaddr     00000032
 EQU  INT_VECTORS_SIZE 00000034
 CSEG setup        0000001b
-CSEG capture_input 00000043
-CSEG RandNumbers  00000046
-CSEG FoursecondsCount 0000004d
-CSEG TEST         00000041
-CSEG L0           0000004c
-CSEG Trigger      0000004e
-CSEG Delay_5s     00000053
-CSEG L1           00000055
+CSEG ChangeModes  00000077
+CSEG capture_input 0000004b
+CSEG RandNumbers  00000054
+CSEG FoursecondsCount 00000060
+CSEG Play_Mode    00000043
+CSEG L4           00000047
+CSEG TEST         00000049
+CSEG lt           00000053
+CSEG L0           0000005a
+CSEG Trigger      0000006c
+CSEG L2           0000005f
+CSEG PENALTIES    00000062
+CSEG POINTS       00000064
+CSEG L5           00000069
+CSEG Delay_10us   00000070
+CSEG L1           00000072
