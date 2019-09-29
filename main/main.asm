@@ -9,7 +9,6 @@
 .org 0x001A
 	rjmp FoursecondsCount
 
-
 setup:
 
 	ldi R20, HIGH(RAMEND)
@@ -52,18 +51,15 @@ setup:
 	clr R28
 
 	sei
-	Ldi R16 , 0
+	Ldi R16 , 19
 
 TEST:
 	out portc , R16
 	Rjmp TEST
-	//rjmp wait
+	
 
-capture_input :
-	//sbi portd , 6	
+capture_input :	
 	LDS R16, ICR1L
-	//ldi R20 , 0b01000101
-	//sts TCCR1B , R20
 	reti
 
 
@@ -78,40 +74,16 @@ L0:
 	reti
 
 
-/*wait:
-	sei
-	BRNE Maths
-	rjmp wait
-	RE:	sei
-		mov R28 , R16
-		rjmp wait
-	FE:	sei
-		mov R29 , R16
-		rjmp wait*/
-/*
-Maths:
-	sub R24 , R27
-	clr R28
-	Divide:
-		Inc R28
-		subi R24 , 2
-		BRCC Divide
-		dec R28
-		mov R16 , R24
-		ret
-*/
-
-
-
 FoursecondsCount:
 	
 		reti
 
 
-/*
+
 PENALTIES:
 	DEC R28
 	ret
+
 POINTS:
 		cpi R28 , 10
 		BREQ L5
@@ -119,15 +91,9 @@ POINTS:
 		INC R28
 		ret
 		L5:
- clr R28
- ldi R28 , 0b00010000
- ret*/
-
-
-
-
-
-
+		clr R28
+		ldi R28 , 0b00010000
+		ret
 
 Trigger:
 	sbi portd , 7
@@ -137,7 +103,7 @@ Trigger:
 	ret
 
 
-Delay_5s:
+Delay_10U:
     ldi  r18, 3
     ldi  r19, 179
 L1: dec  r19
