@@ -23,13 +23,13 @@
  </OUTPUT_FILES>
  <LABELS>
   <setup><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>18</LINE></setup>
-  <ChangeModes><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>145</LINE></ChangeModes>
-  <capture_input><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>78</LINE></capture_input>
+  <ChangeModes><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>144</LINE></ChangeModes>
+  <capture_input><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>79</LINE></capture_input>
   <RandNumbers><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>89</LINE></RandNumbers>
   <FoursecondsCount><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>107</LINE></FoursecondsCount>
-  <Play_Mode><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>65</LINE></Play_Mode>
-  <L4><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>69</LINE></L4>
-  <TEST><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>73</LINE></TEST>
+  <Play_Mode><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>66</LINE></Play_Mode>
+  <L4><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>70</LINE></L4>
+  <TEST><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>74</LINE></TEST>
   <lt><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>86</LINE></lt>
   <L0><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>98</LINE></L0>
   <Trigger><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>128</LINE></Trigger>
@@ -38,6 +38,6 @@
   <POINTS><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>117</LINE></POINTS>
   <L5><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>123</LINE></L5>
   <Delay_10us><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>135</LINE></Delay_10us>
-  <L1><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>139</LINE></L1>
+  <L1><FILE>C:\Users\1619022\Desktop\myweb\main\main.asm</FILE><LINE>138</LINE></L1>
  </LABELS>
 </ASSEMBLER_INFO>

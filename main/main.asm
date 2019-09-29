@@ -59,6 +59,7 @@ setup:
 	clr R30
 	sei
 	Ldi R16 , 0
+
 /*Start: sleep
 	rjmp start*/
 
@@ -69,32 +70,31 @@ Play_Mode:
 	L4:
 		out portc , R30
 		rjmp L4
-
+	
 TEST:
 		out portc , R16
 		Rjmp TEST
 
 
 capture_input :	
-		sei
 		LDS R16, ICR1L
 		subi r16 , 16
 		sub r16 , R30
 		cpi r16 , 0
 		brne lt
-		sbi portd , 5
-	lt:	//sbi portd , 6
+			sbi portd , 5
+		lt:	
 		reti
 
 RandNumbers:
 		Inc R27
-		cpi R27 , 144
+		cpi R27 , 122
 		BRNE L0
 		rcall Trigger
 		Clr R27
 		Inc R27
-		//cbi portd , 5
-		//cbi portd , 6
+		cbi portd , 5
+		cbi portd , 6
 	L0: Inc R21
 		cpi R21 ,11
 		BRNE L2
@@ -105,7 +105,7 @@ RandNumbers:
 
 
 FoursecondsCount:
-mov R30 , R21
+	mov R30 , R21
 	reti
 
 
@@ -133,7 +133,6 @@ Trigger:
 
 
 Delay_10us:
-
 		ldi  r18, 3
 		ldi  r19, 179
 	L1: dec  r19
